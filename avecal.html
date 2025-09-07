@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .passed {
+            color: green;
+        }
+
+        .failed {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Average Calculator</h1>
+    <button onclick="startInput()">Start Input</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function startInput() {
+        let sum = 0;  
+        let totalNumbers = 5;  //inputs
+
+        // Loop
+        for (let i = 1; i <= totalNumbers; i++) {
+            let num = parseInt(prompt("Enter number " + i + " (two-digit number):"), 10);
+
+            // two digits
+            while (isNaN(num) || num < 10 || num > 99) {
+                num = parseInt(prompt("Invalid input. Enter a valid two-digit number for number " + i + ":"), 10);
+            }
+
+            sum += num;  // Add the valid number to the sum
+        }
+
+        // Cal average
+        let average = sum / totalNumbers;
+
+        // Result 
+        let resultText = "Average: " + average + "<br>";
+        resultText += (average >= 75) ? "<span class='passed'>Result: Passed✅</span>" : "<span class='failed'>Result: Failed❌</span>";
+
+        // 'result' div
+        document.getElementById("result").innerHTML = resultText;
+    }
+</script>
+
+</body>
+</html>
